@@ -94,7 +94,7 @@ class ViewController: UIViewController {
     super.viewDidLoad()
     
     let pagingViewController = PagingViewController<ImageItem>()
-    pagingViewController.menuItemClass = ImagePagingCell.self
+	pagingViewController.menuItemSource = .class(type: ImagePagingCell.self)
     pagingViewController.menuItemSize = .fixed(width: 70, height: 70)
     pagingViewController.menuItemSpacing = 8
     pagingViewController.menuInsets = UIEdgeInsets(top: 12, left: 18, bottom: 12, right: 18)
@@ -114,10 +114,10 @@ class ViewController: UIViewController {
     
     // Add the paging view controller as a child view controller and
     // contrain it to all edges.
-    addChildViewController(pagingViewController)
+    addChild(pagingViewController)
     view.addSubview(pagingViewController.view)
     view.constrainToEdges(pagingViewController.view)
-    pagingViewController.didMove(toParentViewController: self)
+    pagingViewController.didMove(toParent: self)
     
     // Set our custom data source.
     pagingViewController.dataSource = self
